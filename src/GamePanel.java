@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     Timer powerUpSpawn;
     
     RedTank redTank = new RedTank(250,700,40,50);
-    BlueTank blueTank = new BlueTank(250,700,40,50);
+    BlueTank blueTank = new BlueTank(250,400,40,50);
     ObjectManager objectManager = new ObjectManager(redTank, blueTank);
 
     public GamePanel() {

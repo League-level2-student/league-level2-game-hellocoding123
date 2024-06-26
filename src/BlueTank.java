@@ -20,7 +20,7 @@ public class BlueTank extends GameObject{
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	
-	double angle = 0.0;
+	int angle = 0;
 
 	public BlueTank(int x, int y, int width, int height) {
 		
@@ -37,8 +37,9 @@ public class BlueTank extends GameObject{
 		
 		g.setColor(Color.BLUE);
         Graphics2D g2 = (Graphics2D)g;
+        double radAngle = Math.toRadians(angle);
         
-        g2.rotate(angle, x+width/2, y+height/2);
+        g2.rotate(radAngle, x+width/2, y+height/2);
         
         if (gotImage) {
         	g.drawImage(image, x, y, width, height, null);
@@ -47,26 +48,57 @@ public class BlueTank extends GameObject{
         	g.fillRect(x, y, width, height);
         }
         
-        g2.rotate(-angle, x+width/2, y+height/2);
+        g2.rotate(-radAngle, x+width/2, y+height/2);
         
-        if(rotatingLeft == true) {
-        	angle -= 0.05;
-        }
-        
-        if(rotatingRight == true) {
-        	angle += 0.05;
-        }
-       
+	}
+	
+	double calcDx() {
+		
+		double dx = 0.0;
+		
+		if(angle >= 0 && angle < 90 || angle <= 0 && angle > -90) {
+			dx = Math.cos(Math.toRadians(angle));
+		}
+		
+		if(angle >= 90 && angle < 180 || angle <= -90 && angle > -180) {
+			dx = -Math.cos(Math.PI - Math.toRadians(angle));
+		}
+		
+		if(angle >= 180 && angle < 270 || angle <= -180 && angle > -270) {
+			dx = -Math.sin((3/2)*Math.PI - Math.toRadians(angle));
+		}
+		
+		if(angle >= 270 && angle < 360 || angle <= -270 && angle > -360) {
+			dx = Math.cos((2)*Math.PI - Math.toRadians(angle));
+		}
+		
+		return dx;
+	}
+	
+	double calcDy() {
+		
+		double dy = 0.0;
+		
+		if(angle > 0 && angle <= 90 || angle < 0 && angle >= -90) {
+			dy = Math.sin(Math.toRadians(angle));
+		}
+		
+		if(angle > 90 && angle < 180 || angle < -90 && angle <= -180) {
+			dy = Math.sin(Math.PI - Math.toRadians(angle));
+		}
+		
+		if(angle >= 180 && angle < 270 || angle <= -180 && angle < -270) {
+			dy = -Math.cos((3/2)*Math.PI - Math.toRadians(angle));
+		}
+		
+		if(angle >= 270 && angle < 360 || angle <= -270 && angle > -360) {
+			dy = -Math.sin((2)*Math.PI - Math.toRadians(angle));
+		}
+		
+		return dy;
 	}
 	
 	public void update() {
-		if (right && x < TankWars.WIDTH - width) {
-			right();
-		}
-		
-		if (left && x > 0) {
-			left();
-		}
 		
 		if (up && y > 0) {
 			up();
@@ -76,9 +108,19 @@ public class BlueTank extends GameObject{
 			down();
 		}
 		
+		 if(rotatingLeft == true) {
+	        angle -= 6;
+	        angle%=360;
+	     }
+	        
+	     if(rotatingRight == true) {
+	        angle += 6;
+	        angle%=360;
+	     }
+		
 		super.update();
 	}
-	
+	/*
 	public void right() {
         x+=Math.sin(angle);
     }
@@ -86,15 +128,13 @@ public class BlueTank extends GameObject{
 	public void left() {
         x-=Math.sin(angle);
     }
-	
+	*/
 	public void up() {
-        y-=Math.s(angle)*5;
-        System.out.println(Math.cos(angle));
+      
     }
 	
 	public void down() {
-        y+=Math.cos(angle);
-        System.out.println(Math.cos(angle));
+     
     }
 	
 	void loadImage(String imageFile) {
