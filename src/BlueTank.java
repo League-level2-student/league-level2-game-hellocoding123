@@ -56,19 +56,19 @@ public class BlueTank extends GameObject{
 		
 		double dx = 0.0;
 		
-		if(angle >= 0 && angle < 90 || angle <= 0 && angle > -90) {
+		if(angle >= 0 && angle <= 90 || angle <= 0 && angle >= -90) {
 			dx = Math.cos(Math.toRadians(angle));
 		}
 		
-		if(angle >= 90 && angle < 180 || angle <= -90 && angle > -180) {
+		if(angle > 90 && angle <= 180 || angle < -90 && angle >= -180) {
 			dx = -Math.cos(Math.PI - Math.toRadians(angle));
 		}
 		
-		if(angle >= 180 && angle < 270 || angle <= -180 && angle > -270) {
-			dx = -Math.sin((3/2)*Math.PI - Math.toRadians(angle));
+		if(angle > 180 && angle <= 270 || angle < -180 && angle >= -270) {
+			dx = -Math.sin(3*Math.PI/2 - Math.toRadians(angle));
 		}
 		
-		if(angle >= 270 && angle < 360 || angle <= -270 && angle > -360) {
+		if(angle > 270 && angle < 360 || angle < -270 && angle > -360) {
 			dx = Math.cos((2)*Math.PI - Math.toRadians(angle));
 		}
 		
@@ -79,19 +79,19 @@ public class BlueTank extends GameObject{
 		
 		double dy = 0.0;
 		
-		if(angle > 0 && angle <= 90 || angle < 0 && angle >= -90) {
+		if(angle >= 0 && angle <= 90 || angle <= 0 && angle >= -90) {
 			dy = Math.sin(Math.toRadians(angle));
 		}
 		
-		if(angle > 90 && angle < 180 || angle < -90 && angle <= -180) {
+		if(angle > 90 && angle <= 180 || angle < -90 && angle >= -180) {
 			dy = Math.sin(Math.PI - Math.toRadians(angle));
 		}
 		
-		if(angle >= 180 && angle < 270 || angle <= -180 && angle < -270) {
-			dy = -Math.cos((3/2)*Math.PI - Math.toRadians(angle));
+		if(angle > 180 && angle <= 270 || angle < -180 && angle >= -270) {
+			dy = -Math.cos(3*Math.PI/2 - Math.toRadians(angle));
 		}
 		
-		if(angle >= 270 && angle < 360 || angle <= -270 && angle > -360) {
+		if(angle > 270 && angle < 360 || angle < -270 && angle > -360) {
 			dy = -Math.sin((2)*Math.PI - Math.toRadians(angle));
 		}
 		
@@ -101,7 +101,7 @@ public class BlueTank extends GameObject{
 	public void update() {
 		
 		if (up && y > 0) {
-			up();
+			up(1);
 		}
 		
 		if (down && y < TankWars.HEIGHT - height) {
@@ -109,12 +109,12 @@ public class BlueTank extends GameObject{
 		}
 		
 		 if(rotatingLeft == true) {
-	        angle -= 6;
+	        angle -= 4;
 	        angle%=360;
 	     }
 	        
 	     if(rotatingRight == true) {
-	        angle += 6;
+	        angle += 4;
 	        angle%=360;
 	     }
 		
@@ -129,12 +129,15 @@ public class BlueTank extends GameObject{
         x-=Math.sin(angle);
     }
 	*/
-	public void up() {
-      
+	public void up(int posOrNeg) {
+		double tdx = calcDx();
+		double tdy = calcDy();
+      x += calcDx()*4*posOrNeg;
+      y += calcDy()*4*posOrNeg;
     }
 	
 	public void down() {
-     
+      up(-1);
     }
 	
 	void loadImage(String imageFile) {
