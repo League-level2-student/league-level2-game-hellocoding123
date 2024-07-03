@@ -7,8 +7,7 @@ import java.util.Random;
 
 public class ObjectManager implements ActionListener{
 
-	RedTank redTank;
-	BlueTank blueTank;
+	Tank tank;
 	
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<PowerUps> powerUp = new ArrayList<PowerUps>();
@@ -26,9 +25,8 @@ public class ObjectManager implements ActionListener{
 	}
 	*/
 	
-	public ObjectManager(RedTank redTank, BlueTank blueTank) {
-		this.redTank = redTank;
-		this.blueTank = blueTank;
+	public ObjectManager(Tank tank) {
+		this.tank = tank;
 	}
 	
 	void addProjectile(Projectile projectile) {
@@ -60,7 +58,7 @@ public class ObjectManager implements ActionListener{
 			projectiles.get(i).update();
 		}
 		
-		if(redTank.isActive == true && blueTank.isActive == true) {
+		if(tank.isActive == true) {
 			checkCollision();
 			purgeObjects();
 		} 
@@ -70,8 +68,7 @@ public class ObjectManager implements ActionListener{
 	
 	void draw(Graphics g) {
 		
-		redTank.draw(g);
-		blueTank.draw(g);
+		tank.draw(g);
 		
 		for(int i = 0; i < powerUp.size(); i++ ) {
 			powerUp.get(i).draw(g);
@@ -100,26 +97,17 @@ public class ObjectManager implements ActionListener{
 	void checkCollision() {
 		
 		for(int i = 0; i < powerUp.size(); i++ ) {
-			if(redTank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
-				powerUp.get(i).isActive = false;
-			}
-			else if(blueTank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
+			if(tank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
 				powerUp.get(i).isActive = false;
 			}
 		}
 		
 		for(int i = 0; i < projectiles.size(); i++ ) {
-			if(redTank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
+			if(tank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
 				projectiles.get(i).isActive = false;
 				//redTank.isActive = false;
 				blueScore++;
 				System.out.println("blue died");
-			}
-			else if(blueTank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
-				projectiles.get(i).isActive = false;
-				//blueTank.isActive = false;
-				redScore++;
-				System.out.println("red died");
 			}
 		}
 	}

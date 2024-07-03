@@ -7,7 +7,7 @@ import java.lang.Math;
 
 import javax.imageio.ImageIO;
 
-public class BlueTank extends GameObject{
+public class Tank extends GameObject{
 	
 	public boolean right = false;
 	public boolean left = false;
@@ -22,7 +22,7 @@ public class BlueTank extends GameObject{
 	
 	int angle = 0;
 
-	public BlueTank(int x, int y, int width, int height) {
+	public Tank(int x, int y, int width, int height) {
 		
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
