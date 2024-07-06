@@ -59,7 +59,7 @@ public class ObjectManager implements ActionListener{
 		}
 		
 		if(tank.isActive == true) {
-			checkCollision();
+			//checkCollision();
 			purgeObjects();
 		} 
 		
@@ -93,7 +93,7 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-	
+	/*
 	void checkCollision() {
 		
 		for(int i = 0; i < powerUp.size(); i++ ) {
@@ -111,7 +111,7 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-
+	*/
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

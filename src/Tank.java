@@ -71,7 +71,7 @@ public class Tank extends GameObject{
 		if(angle > 270 && angle < 360 || angle < -270 && angle > -360) {
 			dx = Math.cos((2)*Math.PI - Math.toRadians(angle));
 		}
-		
+		System.out.println(dx);
 		return dx;
 	}
 	
@@ -94,8 +94,9 @@ public class Tank extends GameObject{
 		if(angle > 270 && angle < 360 || angle < -270 && angle > -360) {
 			dy = -Math.sin((2)*Math.PI - Math.toRadians(angle));
 		}
-		
+		System.out.println(dy);
 		return dy;
+		
 	}
 	
 	public void update() {
