@@ -33,9 +33,7 @@ public class ObjectManager implements ActionListener{
 		
 		projectiles.add(projectile);
 		
-		for(int i = 0; i < projectiles.size(); i++) {
-			projectiles.get(i).update();
-		}
+
 	}
 	
 	void addPowerUp() {

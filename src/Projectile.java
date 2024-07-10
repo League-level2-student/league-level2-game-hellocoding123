@@ -10,14 +10,16 @@ public class Projectile extends GameObject{
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
-	Tank tank = new Tank(0,0,0,0);
-	double tdx = tank.calcDx();
-	double tdy = tank.calcDy();
+	
+	double tdx;
+	double tdy;
 
-	public Projectile(int x, int y, int width, int height) {
+	public Projectile(int x, int y, int width, int height, double dx, double dy) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 10;
+		tdx=dx;
+		tdy=dy;
 		
 		if (needImage) {
 		    loadImage ("bullet.png");
@@ -25,10 +27,8 @@ public class Projectile extends GameObject{
 	}
 	
 	void update() {
-		System.out.println(tdx);
-		System.out.println(tdy);
-		x += tdx;
-		y += tdy;
+		x += tdx*5;
+		y += tdy*5;
 		super.update();
 	}
 	
@@ -50,9 +50,10 @@ public class Projectile extends GameObject{
 	        needImage = false;
 	    }
 	}
-	
+	/*
 	public Projectile getProjectile() {
 		
         return new Projectile(x+width/2, y, 10, 10);
 	} 
+	*/
 }
