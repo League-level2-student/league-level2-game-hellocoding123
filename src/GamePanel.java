@@ -31,8 +31,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     Timer frameDraw;
     Timer powerUpSpawn;
     
-    Tank tank = new Tank(250,400,50,40);
-    ObjectManager objectManager = new ObjectManager(tank);
+    Tank blueTank = new Tank(200,400,50,40, "blue");
+    Tank redTank = new Tank(250,400,50,40, "red");
+    
+    ObjectManager objectManager = new ObjectManager(blueTank, redTank);
+    
 
     public GamePanel() {
     	titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -85,7 +88,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		 
 	}
 	void updateGameState() { 
-		tank.update();
+		blueTank.update();
+		redTank.update();
 		objectManager.update();
 		
 		if((objectManager.redScore >= 15 || objectManager.blueScore >= 15) && Math.abs(objectManager.redScore - objectManager.blueScore) >= 2) {
@@ -225,55 +229,55 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			
 			//blue tank movement
 			if (e.getKeyCode()==KeyEvent.VK_UP) {
-			    if (tank.y > 0) {
-			    	tank.up = true;
+			    if (blueTank.y > 0) {
+			    	blueTank.up = true;
 				}
 			    else {
-			    	tank.up = false;
+			    	blueTank.up = false;
 			    }
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-			    tank.down = true;
+			    blueTank.down = true;
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-			    tank.rotatingLeft = true;
+			    blueTank.rotatingLeft = true;
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-				tank.rotatingRight = true;
+				blueTank.rotatingRight = true;
 			}
 			
 			//red tank movement
 			if (e.getKeyCode()==KeyEvent.VK_W) {
-			    if (tank.y > 0) {
-			    	tank.up = true;
+			    if (redTank.y > 0) {
+			    	redTank.up = true;
 				}
 			    else {
-			    	tank.up = false;
+			    	redTank.up = false;
 			    }
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_S) {
-			    tank.down = true;
+			    redTank.down = true;
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_A) {
-				tank.rotatingLeft = true;
+				redTank.rotatingLeft = true;
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_D) {
-				tank.rotatingRight = true;
+				redTank.rotatingRight = true;
 			}
 			
 			//shoot
 			if (e.getKeyCode()==KeyEvent.VK_SLASH) {
-				objectManager.addProjectile(tank.getProjectile());
+				objectManager.addProjectile(blueTank.getProjectile());
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_G) {
-				objectManager.addProjectile(tank.getProjectile());
+				objectManager.addProjectile(redTank.getProjectile());
 			}
 		}
 	}
@@ -284,36 +288,36 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 		//blue tank key release check
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
-			tank.up = false;
+			blueTank.up = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-			tank.down = false;
+			blueTank.down = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-			tank.rotatingLeft = false;
+			blueTank.rotatingLeft = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-			tank.rotatingRight = false;
+			blueTank.rotatingRight = false;
 		}
 		
 		//red tank key release check
 		if (e.getKeyCode()==KeyEvent.VK_W) {
-			tank.up = false;
+			redTank.up = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_S) {
-			tank.down = false;
+			redTank.down = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_A) {
-			tank.rotatingLeft = false;
+			redTank.rotatingLeft = false;
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_D) {
-			tank.rotatingRight = false;
+			redTank.rotatingRight = false;
 		}
 	}
 

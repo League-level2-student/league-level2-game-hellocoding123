@@ -7,7 +7,8 @@ import java.util.Random;
 
 public class ObjectManager implements ActionListener{
 
-	Tank tank;
+	Tank blueTank;
+	Tank redTank;
 	
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<PowerUps> powerUp = new ArrayList<PowerUps>();
@@ -25,8 +26,9 @@ public class ObjectManager implements ActionListener{
 	}
 	*/
 	
-	public ObjectManager(Tank tank) {
-		this.tank = tank;
+	public ObjectManager(Tank blueTank, Tank redTank ) {
+		this.blueTank = blueTank;
+		this.redTank = redTank;
 	}
 	
 	void addProjectile(Projectile projectile) {
@@ -56,7 +58,7 @@ public class ObjectManager implements ActionListener{
 			projectiles.get(i).update();
 		}
 		
-		if(tank.isActive == true) {
+		if(blueTank.isActive == true && redTank.isActive == true) {
 			//checkCollision();
 			purgeObjects();
 		} 
@@ -66,7 +68,8 @@ public class ObjectManager implements ActionListener{
 	
 	void draw(Graphics g) {
 		
-		tank.draw(g);
+		blueTank.draw(g);
+		redTank.draw(g);
 		
 		for(int i = 0; i < powerUp.size(); i++ ) {
 			powerUp.get(i).draw(g);

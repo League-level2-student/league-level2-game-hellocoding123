@@ -16,26 +16,32 @@ public class Tank extends GameObject{
 	public boolean rotatingLeft = false;
 	public boolean rotatingRight = false;
 	
-	public static BufferedImage image;
-	public static boolean needImage = true;
-	public static boolean gotImage = false;	
+	public BufferedImage image;
+	public boolean needImage = true;
+	public boolean gotImage = false;	
 	
 	int angle = 0;
 
-	public Tank(int x, int y, int width, int height) {
+	public Tank(int x, int y, int width, int height, String tank) {
 		
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 2;
 		
-		if (needImage) {
-		    loadImage ("bluetank.png");
+		if(tank.equals("blue")) {
+			if (needImage) {
+			    loadImage ("bluetank.png");
+			}
+		}
+		else if(tank.equals("red")) {
+			if (needImage) {
+			    loadImage ("redtank.png");
+			}
 		}
 	}
 	
 	void draw(Graphics g) {
 		
-		g.setColor(Color.BLUE);
         Graphics2D g2 = (Graphics2D)g;
         double radAngle = Math.toRadians(angle);
         
@@ -44,7 +50,6 @@ public class Tank extends GameObject{
         if (gotImage) {
         	g.drawImage(image, x, y, width, height, null);
         } else {
-        	g.setColor(Color.BLUE);
         	g.fillRect(x, y, width, height);
         }
         
