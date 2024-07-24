@@ -21,12 +21,16 @@ public class Tank extends GameObject{
 	public boolean gotImage = false;	
 	
 	int angle = 0;
+	
+	String tank;
 
 	public Tank(int x, int y, int width, int height, String tank) {
 		
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 2;
+		
+		this.tank = tank;
 		
 		if(tank.equals("blue")) {
 			if (needImage) {
@@ -160,6 +164,6 @@ public class Tank extends GameObject{
 	
 	public Projectile getProjectile() {
 		
-        return new Projectile(x+width/2-5, y+height/2-5, 10, 10, calcDx(), calcDy());
+        return new Projectile(x+width/2-5, y+height/2-5, 10, 10, calcDx(), calcDy(), tank);
 	} 
 }

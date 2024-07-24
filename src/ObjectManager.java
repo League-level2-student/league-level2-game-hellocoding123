@@ -46,6 +46,9 @@ public class ObjectManager implements ActionListener{
 	
 	void update() {
 		
+		redTank.update();
+		blueTank.update();
+		
 		for(int i = 0; i < powerUp.size(); i++) {
 			powerUp.get(i).update();
 			
@@ -58,11 +61,8 @@ public class ObjectManager implements ActionListener{
 			projectiles.get(i).update();
 		}
 		
-		if(blueTank.isActive == true && redTank.isActive == true) {
-			//checkCollision();
+			checkCollision();
 			purgeObjects();
-		} 
-		
 
 	}
 	
@@ -94,25 +94,28 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-	/*
+	
 	void checkCollision() {
 		
-		for(int i = 0; i < powerUp.size(); i++ ) {
-			if(tank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
-				powerUp.get(i).isActive = false;
-			}
-		}
+//		for(int i = 0; i < powerUp.size(); i++ ) {
+//			if(tank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
+//				powerUp.get(i).isActive = false;
+//			}
+//		}
 		
-		for(int i = 0; i < projectiles.size(); i++ ) {
-			if(tank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
-				projectiles.get(i).isActive = false;
-				//redTank.isActive = false;
-				blueScore++;
-				System.out.println("blue died");
-			}
-		}
+//		for(int i = 0; i < projectiles.size(); i++ ) {
+//			
+			
+			
+//			if(tank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
+//				projectiles.get(i).isActive = false;
+//				//redTank.isActive = false;
+//				blueScore++;
+//				System.out.println("blue died");
+//			}
+//		}
 	}
-	*/
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

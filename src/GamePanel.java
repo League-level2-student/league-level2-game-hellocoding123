@@ -88,8 +88,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		 
 	}
 	void updateGameState() { 
-		blueTank.update();
-		redTank.update();
+
 		objectManager.update();
 		
 		if((objectManager.redScore >= 15 || objectManager.blueScore >= 15) && Math.abs(objectManager.redScore - objectManager.blueScore) >= 2) {

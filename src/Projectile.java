@@ -13,13 +13,17 @@ public class Projectile extends GameObject{
 	
 	double tdx;
 	double tdy;
+	
+	String tank;
 
-	public Projectile(int x, int y, int width, int height, double dx, double dy) {
+	public Projectile(int x, int y, int width, int height, double dx, double dy, String tank) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 10;
 		tdx=dx;
 		tdy=dy;
+		
+		this.tank = tank;
 		
 		if (needImage) {
 		    loadImage ("bullet.png");
