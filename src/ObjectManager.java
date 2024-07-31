@@ -26,7 +26,7 @@ public class ObjectManager implements ActionListener{
 	}
 	*/
 	
-	public ObjectManager(Tank blueTank, Tank redTank ) {
+	public ObjectManager(Tank blueTank, Tank redTank) {
 		this.blueTank = blueTank;
 		this.redTank = redTank;
 	}
@@ -97,6 +97,16 @@ public class ObjectManager implements ActionListener{
 	
 	void checkCollision() {
 		
+		for(Projectile p: projectiles) {
+			if(p.tankColor.equals("blue")) {
+				//if touching red tank
+			}
+			
+			else {
+				
+			}
+		}
+		
 //		for(int i = 0; i < powerUp.size(); i++ ) {
 //			if(tank.collisionBox.intersects(powerUp.get(i).collisionBox)) {
 //				powerUp.get(i).isActive = false;
@@ -109,11 +119,11 @@ public class ObjectManager implements ActionListener{
 			
 //			if(tank.collisionBox.intersects(projectiles.get(i).collisionBox)) {
 //				projectiles.get(i).isActive = false;
-//				//redTank.isActive = false;
+//				redTank.isActive = false;
 //				blueScore++;
 //				System.out.println("blue died");
-//			}
-//		}
+			
+		
 	}
 
 	@Override

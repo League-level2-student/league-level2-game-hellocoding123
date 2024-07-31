@@ -22,22 +22,22 @@ public class Tank extends GameObject{
 	
 	int angle = 0;
 	
-	String tank;
+	String tankColor;
 
-	public Tank(int x, int y, int width, int height, String tank) {
+	public Tank(int x, int y, int width, int height, String tankColor) {
 		
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 2;
 		
-		this.tank = tank;
+		this.tankColor = tankColor;
 		
-		if(tank.equals("blue")) {
+		if(tankColor.equals("blue")) {
 			if (needImage) {
 			    loadImage ("bluetank.png");
 			}
 		}
-		else if(tank.equals("red")) {
+		else if(tankColor.equals("red")) {
 			if (needImage) {
 			    loadImage ("redtank.png");
 			}
@@ -164,6 +164,6 @@ public class Tank extends GameObject{
 	
 	public Projectile getProjectile() {
 		
-        return new Projectile(x+width/2-5, y+height/2-5, 10, 10, calcDx(), calcDy(), tank);
+        return new Projectile(x+width/2-5, y+height/2-5, 10, 10, calcDx(), calcDy(), tankColor);
 	} 
 }
