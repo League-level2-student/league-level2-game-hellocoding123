@@ -34,11 +34,15 @@ public class Projectile extends GameObject{
 		x += tdx*5;
 		y += tdy*5;
 		super.update();
+		
+		if(x > TankWars.WIDTH || x < 0 || y > TankWars.HEIGHT || y < 0) {
+			
+		}
 	}
 	
 	void draw(Graphics g) {
 		
-		g.setColor(Color.RED);
+		g.setColor(Color.BLACK);
         g.fillOval(x, y, width, height);
 	}
 	

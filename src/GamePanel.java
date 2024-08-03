@@ -31,8 +31,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     Timer frameDraw;
     Timer powerUpSpawn;
     
-    Tank blueTank = new Tank(200,400,50,40, "blue");
-    Tank redTank = new Tank(250,400,50,40, "red");
+    Tank blueTank = new Tank(400,100,50,40, "blue");
+    Tank redTank = new Tank(400,400,50,40, "red");
     
     ObjectManager objectManager = new ObjectManager(blueTank, redTank);
     
