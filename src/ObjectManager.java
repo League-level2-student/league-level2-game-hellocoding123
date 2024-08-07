@@ -116,6 +116,11 @@ public class ObjectManager implements ActionListener {
 				}
 			}
 		}
+		
+		if(blueTank.collisionBox.intersects(redTank.collisionBox)) {
+			blueTank.isBouncingBack = true;
+			redTank.isBouncingBack = true;
+		}
 
 //		for(int i = 0; i < powerUp.size(); i++ ) {
 //			if(tank.collisionBox.intersects(powerUp.get(i).collisionBox)) {

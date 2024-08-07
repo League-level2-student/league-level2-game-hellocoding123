@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 public class GameObject {
 
-	int x;
-	int y;
+	double x;
+	double y;
 	int width;
 	int height;
 	int speed = 0;
@@ -30,7 +30,7 @@ public class GameObject {
 	
 	void update() {
 		
-		collisionBox.setBounds(x, y, width, height);
+		collisionBox.setBounds((int)x, (int)y, width, height);
 		
 	}
 }

@@ -36,14 +36,14 @@ public class Projectile extends GameObject{
 		super.update();
 		
 		if(x > TankWars.WIDTH || x < 0 || y > TankWars.HEIGHT || y < 0) {
-			
+			this.isActive = false;
 		}
 	}
 	
 	void draw(Graphics g) {
 		
 		g.setColor(Color.BLACK);
-        g.fillOval(x, y, width, height);
+        g.fillOval((int)x, (int)y, width, height);
 	}
 	
 	void loadImage(String imageFile) {

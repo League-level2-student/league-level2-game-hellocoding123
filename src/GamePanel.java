@@ -271,11 +271,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 			
 			//shoot
-			if (e.getKeyCode()==KeyEvent.VK_SLASH) {
+			if (e.getKeyCode()==KeyEvent.VK_SLASH && blueTank.canShoot) {
 				objectManager.addProjectile(blueTank.getProjectile());
 			}
 			
-			if (e.getKeyCode()==KeyEvent.VK_G) {
+			if (e.getKeyCode()==KeyEvent.VK_G && redTank.canShoot) {
 				objectManager.addProjectile(redTank.getProjectile());
 			}
 		}
@@ -302,6 +302,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			blueTank.rotatingRight = false;
 		}
 		
+		if (e.getKeyCode()==KeyEvent.VK_SLASH) {
+			blueTank.canShoot = true;
+		}
+		
 		//red tank key release check
 		if (e.getKeyCode()==KeyEvent.VK_W) {
 			redTank.up = false;
@@ -318,6 +322,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode()==KeyEvent.VK_D) {
 			redTank.rotatingRight = false;
 		}
+		
+		if (e.getKeyCode()==KeyEvent.VK_G) {
+			redTank.canShoot = true;
+		}
+		
 	}
 
 	@Override

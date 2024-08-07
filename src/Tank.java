@@ -20,6 +20,11 @@ public class Tank extends GameObject{
 	public boolean needImage = true;
 	public boolean gotImage = false;	
 	
+	boolean canShoot = true;
+	
+	boolean isBouncingBack = false;
+	int bounceDistance = 20;
+	
 	int angle = 0;
 	
 	String tankColor;
@@ -52,9 +57,9 @@ public class Tank extends GameObject{
         g2.rotate(radAngle, x+width/2, y+height/2);
         
         if (gotImage) {
-        	g.drawImage(image, x, y, width, height, null);
+        	g.drawImage(image, (int)x, (int)y, width, height, null);
         } else {
-        	g.fillRect(x, y, width, height);
+        	g.fillRect((int)x, (int)y, width, height);
         }
         
         g2.rotate(-radAngle, x+width/2, y+height/2);
@@ -110,23 +115,40 @@ public class Tank extends GameObject{
 	
 	public void update() {
 		
-		if (up && y > 0) {
-			up(1);
+		if(isBouncingBack && bounceDistance > 0) {
+			for(int i = 0; i < bounceDistance; i++) {
+				down();
+			}
+			
+			bounceDistance /= 2;
 		}
 		
-		if (down && y < TankWars.HEIGHT - height) {
-			down();
+		else if(bounceDistance <= 0) {
+			bounceDistance = 20;
+			isBouncingBack = false;
 		}
 		
-		 if(rotatingLeft == true) {
-	        angle -= 4;
-	        angle%=360;
-	     }
-	        
-	     if(rotatingRight == true) {
-	        angle += 4;
-	        angle%=360;
-	     }
+		else {
+			if (up && y > 0) {
+				up(1);
+			}
+			
+			if (down && y < TankWars.HEIGHT - height) {
+				down();
+			}
+			
+			 if(rotatingLeft == true) {
+		        angle -= 4;
+		        angle%=360;
+		     }
+		        
+		     if(rotatingRight == true) {
+		        angle += 4;
+		        angle%=360;
+		     }
+		}
+	     
+	     
 		
 		super.update();
 	}
@@ -164,6 +186,7 @@ public class Tank extends GameObject{
 	
 	public Projectile getProjectile() {
 		
-        return new Projectile(x+width/2-5, y+height/2-5, 10, 10, calcDx(), calcDy(), tankColor);
+		canShoot = false;
+        return new Projectile((int)x+width/2-5, (int)y+height/2-5, 10, 10, calcDx(), calcDy(), tankColor);
 	} 
 }
