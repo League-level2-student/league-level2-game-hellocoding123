@@ -25,9 +25,14 @@ public class Tank extends GameObject{
 	boolean isBouncingBack = false;
 	int bounceDistance = 20;
 	
+	boolean isHit = false;
+	
 	int angle = 0;
 	
+	int blinks = 0;
+	
 	String tankColor;
+	int counter = 0;
 
 	public Tank(int x, int y, int width, int height, String tankColor) {
 		
@@ -56,14 +61,27 @@ public class Tank extends GameObject{
         
         g2.rotate(radAngle, x+width/2, y+height/2);
         
-        if (gotImage) {
-        	g.drawImage(image, (int)x, (int)y, width, height, null);
-        } else {
-        	g.fillRect((int)x, (int)y, width, height);
+        if(isHit && blinks < 6) {
+        	if(counter >= 10) {
+		        if (gotImage) {
+		        	g.drawImage(image, (int)x, (int)y, width, height, null);
+		        } else {
+		        	g.fillRect((int)x, (int)y, width, height);
+		        }
+        	}
+        	if(counter == 0) {
+        		blinks++;
+        	}
+        }
+        else {
+        	if (gotImage) {
+	        	g.drawImage(image, (int)x, (int)y, width, height, null);
+	        } else {
+	        	g.fillRect((int)x, (int)y, width, height);
+	        }
         }
         
         g2.rotate(-radAngle, x+width/2, y+height/2);
-        
 	}
 	
 	double calcDx() {
@@ -114,6 +132,9 @@ public class Tank extends GameObject{
 	}
 	
 	public void update() {
+		counter ++;
+		counter %= 20;
+
 		
 		if(isBouncingBack && bounceDistance > 0) {
 			for(int i = 0; i < bounceDistance; i++) {
@@ -124,7 +145,7 @@ public class Tank extends GameObject{
 		}
 		
 		else if(bounceDistance <= 0) {
-			bounceDistance = 20;
+			bounceDistance = 7;
 			isBouncingBack = false;
 		}
 		
@@ -147,7 +168,7 @@ public class Tank extends GameObject{
 		        angle%=360;
 		     }
 		}
-	     
+	    
 	     
 		
 		super.update();
@@ -172,6 +193,7 @@ public class Tank extends GameObject{
       up(-1);
     }
 	
+	
 	void loadImage(String imageFile) {
 	    if (needImage) {
 	        try {
@@ -188,5 +210,13 @@ public class Tank extends GameObject{
 		
 		canShoot = false;
         return new Projectile((int)x+width/2-5, (int)y+height/2-5, 10, 10, calcDx(), calcDy(), tankColor);
+	}
+
+	public void isHit() {
+		// TODO Auto-generated method stub
+		counter = 0;
+		blinks = 0;
+		isHit = true;
+		
 	} 
 }

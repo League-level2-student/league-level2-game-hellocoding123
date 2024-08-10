@@ -102,6 +102,8 @@ public class ObjectManager implements ActionListener {
 				if (redTank.collisionBox.intersects(p.collisionBox)) {
 					p.isActive = false;
 					redTank.isActive = false;
+					//blueTank.isHit = true;
+					redTank.isHit();
 					blueScore++;
 					System.out.println("blue died");
 				}
@@ -111,6 +113,8 @@ public class ObjectManager implements ActionListener {
 				if (blueTank.collisionBox.intersects(p.collisionBox)) {
 					p.isActive = false;
 					blueTank.isActive = false;
+				//	redTank.isHit = true;
+					blueTank.isHit();
 					redScore++;
 					System.out.println("red died");
 				}
