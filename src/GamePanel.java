@@ -120,7 +120,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	void drawGameState(Graphics g) { 
 		g.setColor(Color.BLACK);
-		 
+		g.fillRect(0, 0, TankWars.WIDTH, TankWars.HEIGHT); 
 		g.setFont(titleFont);
 		
 		objectManager.draw(g);
@@ -137,7 +137,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString("Score: Red " + objectManager.redScore + " - " + objectManager.blueScore + " Blue",10, 20);
 		}
 		
-		g.drawRect(250, 700, 20, 20);
 	}
 	
 	void drawEndState(Graphics g)  { 

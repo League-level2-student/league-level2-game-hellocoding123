@@ -99,7 +99,7 @@ public class ObjectManager implements ActionListener {
 		for (Projectile p : projectiles) {
 			if (p.tankColor.equals("blue")) {
 				// if touching red tank
-				if (redTank.collisionBox.intersects(p.collisionBox)) {
+				if (redTank.collisionBox.intersects(p.collisionBox) && redTank.isBlinking == false) {
 					p.isActive = false;
 					redTank.isActive = false;
 					//blueTank.isHit = true;
@@ -110,7 +110,7 @@ public class ObjectManager implements ActionListener {
 			}
 			
 			else if(p.tankColor.equals("red")) {
-				if (blueTank.collisionBox.intersects(p.collisionBox)) {
+				if (blueTank.collisionBox.intersects(p.collisionBox) && blueTank.isBlinking == false) {
 					p.isActive = false;
 					blueTank.isActive = false;
 				//	redTank.isHit = true;

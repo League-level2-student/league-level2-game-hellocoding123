@@ -17,6 +17,7 @@ public class Tank extends GameObject{
 	public boolean rotatingRight = false;
 	
 	public BufferedImage image;
+	public BufferedImage imageWhiteTank;
 	public boolean needImage = true;
 	public boolean gotImage = false;	
 	
@@ -30,6 +31,7 @@ public class Tank extends GameObject{
 	int angle = 0;
 	
 	int blinks = 0;
+	public boolean isBlinking = false;
 	
 	String tankColor;
 	int counter = 0;
@@ -44,14 +46,16 @@ public class Tank extends GameObject{
 		
 		if(tankColor.equals("blue")) {
 			if (needImage) {
-			    loadImage ("bluetank.png");
+			    image = loadImage ("bluetank.png");
 			}
 		}
 		else if(tankColor.equals("red")) {
 			if (needImage) {
-			    loadImage ("redtank.png");
+			    image = loadImage ("redtank.png");
 			}
 		}
+		imageWhiteTank = loadImage("whitetank.png");		
+				
 	}
 	
 	void draw(Graphics g) {
@@ -62,16 +66,22 @@ public class Tank extends GameObject{
         g2.rotate(radAngle, x+width/2, y+height/2);
         
         if(isHit && blinks < 6) {
+        	
+        	isBlinking = true;
+        	
         	if(counter >= 10) {
 		        if (gotImage) {
 		        	g.drawImage(image, (int)x, (int)y, width, height, null);
 		        } else {
 		        	g.fillRect((int)x, (int)y, width, height);
 		        }
+        	}else {
+        		g.drawImage(imageWhiteTank, (int)x, (int)y, width, height, null);
         	}
         	if(counter == 0) {
         		blinks++;
         	}
+        	
         }
         else {
         	if (gotImage) {
@@ -79,6 +89,10 @@ public class Tank extends GameObject{
 	        } else {
 	        	g.fillRect((int)x, (int)y, width, height);
 	        }
+        	
+        	if(blinks >= 6) {
+        		isBlinking = false;
+        	}
         }
         
         g2.rotate(-radAngle, x+width/2, y+height/2);
@@ -194,16 +208,20 @@ public class Tank extends GameObject{
     }
 	
 	
-	void loadImage(String imageFile) {
-	    if (needImage) {
+	BufferedImage loadImage(String imageFile) {
+		BufferedImage tmpImage = null;
+		
+		if (needImage) {
 	        try {
-	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+	        	tmpImage = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
 		    gotImage = true;
 	        } catch (Exception e) {
 	            
 	        }
 	        needImage = false;
 	    }
+		return tmpImage;
+	    
 	}
 	
 	public Projectile getProjectile() {

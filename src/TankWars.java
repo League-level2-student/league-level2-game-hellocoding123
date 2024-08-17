@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 public class TankWars {
 	
 	JFrame frame;
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 800;
 	GamePanel gamePanel;
 	
 	
