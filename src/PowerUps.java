@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 public class PowerUps extends GameObject{
@@ -9,6 +10,15 @@ public class PowerUps extends GameObject{
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
+	
+	Random r1 = new Random();
+	Random r2 = new Random();
+	Random r3 = new Random();
+	int randX = r1.nextInt(TankWars.HEIGHT);
+	int randY = r2.nextInt(TankWars.WIDTH);
+	int randPowUp = r3.nextInt(1);
+
+	int counter;
 
 	public PowerUps(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -20,7 +30,11 @@ public class PowerUps extends GameObject{
 		}
 	}
 	
+	//Pixlr directions: Size: 480x480, Outline: 20, transparent background, also make purple beam pu
+	
 	void update() {
+		counter ++;
+		counter %= 60;
 		/*
 		y += speed + 5;
 		super.update();

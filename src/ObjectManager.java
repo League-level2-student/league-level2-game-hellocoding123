@@ -13,7 +13,8 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<PowerUps> powerUp = new ArrayList<PowerUps>();
 
-	Random random = new Random();
+	Random r1 = new Random();
+	Random r2 = new Random();
 
 	int blueScore = 0;
 	int redScore = 0;
@@ -37,7 +38,7 @@ public class ObjectManager implements ActionListener {
 
 	void addPowerUp() {
 
-		powerUp.add(new PowerUps(random.nextInt(TankWars.WIDTH), 0, 50, 50));
+		powerUp.add(new PowerUps(r1.nextInt(TankWars.WIDTH), r1.nextInt(TankWars.HEIGHT), 50, 50));
 
 	}
 
