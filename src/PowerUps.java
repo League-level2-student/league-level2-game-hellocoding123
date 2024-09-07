@@ -30,7 +30,7 @@ public class PowerUps extends GameObject{
 		}
 	}
 	
-	//Pixlr directions: Size: 480x480, Outline: 20, transparent background, also make purple beam pu
+	//Pixlr directions: Size: 480x480, Outline: 20, transparent background, also make purple beam 
 	
 	void update() {
 		counter ++;
