@@ -15,6 +15,7 @@ public class ObjectManager implements ActionListener {
 
 	Random r1 = new Random();
 	Random r2 = new Random();
+	Random r3 = new Random();
 
 	int blueScore = 0;
 	int redScore = 0;
@@ -37,8 +38,9 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void addPowerUp() {
-
-		powerUp.add(new PowerUps(r1.nextInt(TankWars.WIDTH), r1.nextInt(TankWars.HEIGHT), 50, 50));
+		int randPowUp = r3.nextInt(3)+1;
+		System.out.println(randPowUp);
+		powerUp.add(new PowerUps(r1.nextInt(TankWars.WIDTH), r1.nextInt(TankWars.HEIGHT), 50, 50, randPowUp));
 
 	}
 

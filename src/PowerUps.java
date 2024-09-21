@@ -11,22 +11,39 @@ public class PowerUps extends GameObject{
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	
+	/*
 	Random r1 = new Random();
 	Random r2 = new Random();
 	Random r3 = new Random();
 	int randX = r1.nextInt(TankWars.HEIGHT);
 	int randY = r2.nextInt(TankWars.WIDTH);
 	int randPowUp = r3.nextInt(1);
-
+	*/
+	
 	int counter;
 
-	public PowerUps(int x, int y, int width, int height) {
+	public PowerUps(int x, int y, int width, int height, int powUp) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 0;
 		
-		if (needImage) {
-		    loadImage ("alien.png");
+		switch (powUp) {
+		
+			case 1:
+				
+				loadImage ("threeBullets.png");
+				break;
+				
+			case 2:
+				
+				loadImage ("shield.png");
+				break;
+				
+			case 3:
+				
+				loadImage ("beam.png");
+				break;
+		
 		}
 	}
 	
@@ -35,36 +52,37 @@ public class PowerUps extends GameObject{
 	void update() {
 		counter ++;
 		counter %= 60;
-		/*
-		y += speed + 5;
-		super.update();
-		*/
+		
+		//super.update();
+		
 	}
 	
 	void draw(Graphics g) {
-		/*
+		
 		g.setColor(Color.YELLOW);
         //g.fillRect(x, y, width, height);
         
         if (gotImage) {
-        	g.drawImage(image, x, y, width, height, null);
+        	g.drawImage(image, (int)x, (int)y, width, height, null);
         } else {
         	g.setColor(Color.BLUE);
-        	g.fillRect(x, y, width, height);
+        	g.fillRect((int)x, (int)y, width, height);
         }
-        */
+        
 	}
 	
 	void loadImage(String imageFile) {
-	    if (needImage) {
+	    
 	        try {
 	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
-		    gotImage = true;
-	        } catch (Exception e) {
+	            gotImage = true;
+	        } 
+	        
+	        catch (Exception e) {
 	            
 	        }
-	        needImage = false;
-	    }
+	        
+	    
 	}
 	
 }
