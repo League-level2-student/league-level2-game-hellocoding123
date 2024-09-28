@@ -40,7 +40,7 @@ public class ObjectManager implements ActionListener {
 	void addPowerUp() {
 		int randPowUp = r3.nextInt(3)+1;
 		System.out.println(randPowUp);
-		powerUp.add(new PowerUps(r1.nextInt(TankWars.WIDTH), r1.nextInt(TankWars.HEIGHT), 50, 50, randPowUp));
+		powerUp.add(new PowerUps(r1.nextInt(TankWars.WIDTH), r1.nextInt(TankWars.HEIGHT), 50, 50));
 
 	}
 

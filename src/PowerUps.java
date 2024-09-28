@@ -14,37 +14,51 @@ public class PowerUps extends GameObject{
 	/*
 	Random r1 = new Random();
 	Random r2 = new Random();
+	*/
 	Random r3 = new Random();
+	/*
 	int randX = r1.nextInt(TankWars.HEIGHT);
 	int randY = r2.nextInt(TankWars.WIDTH);
-	int randPowUp = r3.nextInt(1);
 	*/
+	int randPowUp;
+	
 	
 	int counter;
 
-	public PowerUps(int x, int y, int width, int height, int powUp) {
+	public PowerUps(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 0;
 		
-		switch (powUp) {
+		boolean powUpGen = false;
 		
+		if(!powUpGen) {
+			randPowUp = r3.nextInt(3)+1;
+			powUpGen = false;
+		}
+		
+		switch (randPowUp) {
+			
 			case 1:
 				
-				loadImage ("threeBullets.png");
-				break;
+					image = loadImage ("threeBullets.png");	
 				
+				break;
+					
 			case 2:
 				
-				loadImage ("shield.png");
-				break;
+					image = loadImage ("shield.png");
 				
+				break;
+					
 			case 3:
 				
-				loadImage ("beam.png");
+					image = loadImage ("beam.png");
+				
 				break;
-		
+			
 		}
+		
 	}
 	
 	//Pixlr directions: Size: 480x480, Outline: 20, transparent background, also make purple beam 
@@ -71,6 +85,7 @@ public class PowerUps extends GameObject{
         
 	}
 	
+	/*
 	void loadImage(String imageFile) {
 	    
 	        try {
@@ -82,6 +97,23 @@ public class PowerUps extends GameObject{
 	            
 	        }
 	        
+	    
+	}
+	*/
+	
+	BufferedImage loadImage(String imageFile) {
+		BufferedImage tmpImage = null;
+		
+		
+	        try {
+	        	tmpImage = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	       
+	    
+		return tmpImage;
 	    
 	}
 	
