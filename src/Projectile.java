@@ -30,6 +30,28 @@ public class Projectile extends GameObject{
 		}
 	}
 	
+	public Projectile(int x, int y, int width, int height, double dx, double dy, String tankColor, int powUp) {
+		super(x, y, width, height);
+		// TODO Auto-generated constructor stub
+		speed = 10;
+		tdx=dx;
+		tdy=dy;
+		
+		this.tankColor = tankColor;
+		
+		if (needImage) {
+		    loadImage ("bullet.png");
+		}
+		
+		switch (powUp) {
+		
+			case 1: 
+				
+			case 2:
+				
+		}
+	}
+	
 	void update() {
 		x += tdx*5;
 		y += tdy*5;

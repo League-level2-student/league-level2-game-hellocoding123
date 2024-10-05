@@ -35,6 +35,8 @@ public class Tank extends GameObject{
 	
 	String tankColor;
 	int counter = 0;
+	
+	String shootPowUp = "";
 
 	public Tank(int x, int y, int width, int height, String tankColor) {
 		

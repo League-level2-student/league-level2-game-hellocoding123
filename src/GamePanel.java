@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     
     void startGame() {
     	
-        powerUpSpawn = new Timer(1000 , objectManager);
+        powerUpSpawn = new Timer(9000, objectManager);
         powerUpSpawn.start();
     }
     

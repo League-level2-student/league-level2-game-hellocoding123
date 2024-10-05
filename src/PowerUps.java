@@ -7,8 +7,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 public class PowerUps extends GameObject{
 	
-	public static BufferedImage image;
-	public static boolean needImage = true;
+	public BufferedImage image;
 	public static boolean gotImage = false;	
 	
 	/*
@@ -30,12 +29,9 @@ public class PowerUps extends GameObject{
 		// TODO Auto-generated constructor stub
 		speed = 0;
 		
-		boolean powUpGen = false;
+		randPowUp = r3.nextInt(3)+1;
+			
 		
-		if(!powUpGen) {
-			randPowUp = r3.nextInt(3)+1;
-			powUpGen = false;
-		}
 		
 		switch (randPowUp) {
 			
@@ -65,7 +61,7 @@ public class PowerUps extends GameObject{
 	
 	void update() {
 		counter ++;
-		counter %= 60;
+		counter %= 300;
 		
 		//super.update();
 		
