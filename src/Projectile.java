@@ -30,7 +30,7 @@ public class Projectile extends GameObject{
 		}
 	}
 	
-	public Projectile(int x, int y, int width, int height, double dx, double dy, String tankColor, int powUp) {
+	public Projectile(int x, int y, int width, int height, double dx, double dy, String tankColor, String powUp) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 10;
@@ -45,9 +45,11 @@ public class Projectile extends GameObject{
 		
 		switch (powUp) {
 		
-			case 1: 
+			case "beam": 
 				
-			case 2:
+				
+			case "threeBullets":
+				
 				
 		}
 	}
