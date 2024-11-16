@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class Projectile extends GameObject{
 	
-	public static BufferedImage image;
+	public BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	
@@ -26,7 +26,7 @@ public class Projectile extends GameObject{
 		this.tankColor = tankColor;
 		
 		if (needImage) {
-		    loadImage ("bullet.png");
+		    image = loadImage ("bullet.png");
 		}
 	}
 	
@@ -36,22 +36,22 @@ public class Projectile extends GameObject{
 		speed = 10;
 		tdx=dx;
 		tdy=dy;
-		
+		System.out.println("bob");
 		this.tankColor = tankColor;
-		
 		if (needImage) {
-		    loadImage ("bullet.png");
+		    image = loadImage ("bullet.png");
 		}
-		
+		/*
 		switch (powUp) {
 		
 			case "beam": 
-				
+				break;
 				
 			case "threeBullets":
-				
+				break;
 				
 		}
+		*/
 	}
 	
 	void update() {
@@ -65,22 +65,28 @@ public class Projectile extends GameObject{
 	}
 	
 	void draw(Graphics g) {
-		
-		g.setColor(Color.BLACK);
-        g.fillOval((int)x, (int)y, width, height);
+		if (gotImage) {
+        	g.drawImage(image, (int)x, (int)y, width, height, null);
+		} else {
+			g.setColor(Color.BLACK);
+			g.fillOval((int)x, (int)y, width, height);
+		}
 	}
 	
-	void loadImage(String imageFile) {
+	BufferedImage loadImage(String imageFile) {
+		BufferedImage tmpImage = null;
 		
-	    if (needImage) {
+		
 	        try {
-	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+	        	tmpImage = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
 		    gotImage = true;
 	        } catch (Exception e) {
 	            
 	        }
-	        needImage = false;
-	    }
+	       
+	    
+		return tmpImage;
+	    
 	}
 	/*
 	public Projectile getProjectile() {
