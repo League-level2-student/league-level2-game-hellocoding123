@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import Tank.PowerUp;
+
 public class Projectile extends GameObject{
 	
 	public BufferedImage image;
@@ -15,6 +17,8 @@ public class Projectile extends GameObject{
 	double tdy;
 	
 	String tankColor;
+	
+	PowerUp powUp = new PowerUp.NONE();
 
 	public Projectile(int x, int y, int width, int height, double dx, double dy, String tankColor) {
 		super(x, y, width, height);
@@ -28,8 +32,18 @@ public class Projectile extends GameObject{
 		if (needImage) {
 		    image = loadImage ("bullet.png");
 		}
+		
+		switch (powUp) {
+		
+		case "beam": 
+			break;
+			
+		case "threeBullets":
+			break;
+			
 	}
-	
+	}
+	/*
 	public Projectile(int x, int y, int width, int height, double dx, double dy, String tankColor, String powUp) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -41,7 +55,7 @@ public class Projectile extends GameObject{
 		if (needImage) {
 		    image = loadImage ("bullet.png");
 		}
-		/*
+		
 		switch (powUp) {
 		
 			case "beam": 
@@ -51,9 +65,9 @@ public class Projectile extends GameObject{
 				break;
 				
 		}
-		*/
+		
 	}
-	
+	*/
 	void update() {
 		x += tdx*5;
 		y += tdy*5;

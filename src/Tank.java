@@ -226,6 +226,10 @@ public class Tank extends GameObject{
 	    
 	}
 	
+	enum PowerUp{
+		BEAM,BIG,TRIPLE,NONE;
+	}
+	
 	public Projectile getProjectile() {
 		
 		canShoot = false;
@@ -233,11 +237,13 @@ public class Tank extends GameObject{
 		if(shootPowUp == "") {
         	return new Projectile((int)x+width/2-6, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
 		}
+		/*
 		else {
 			shootPowUp = "";
         	return new Projectile((int)x+width/2-50, (int)y+height/2-60, 100, 100, calcDx(), calcDy(), tankColor, shootPowUp);
 		}
 		
+		*/
 	}
 
 	public void isHit() {
