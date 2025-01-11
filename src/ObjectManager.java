@@ -78,6 +78,7 @@ public class ObjectManager implements ActionListener {
 		for (int i = 0; i < projectiles.size(); i++) {
 			projectiles.get(i).draw(g);
 		}
+		
 	}
 
 	void purgeObjects() {
@@ -133,19 +134,23 @@ public class ObjectManager implements ActionListener {
 			if(blueTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3)) {
 				powerUp.get(i).isActive = false;
 				if(powerUp.get(i).randPowUp == 1) {
-					blueTank.shootPowUp = "beam";
+					blueTank.shootPowUp = "big";
+					System.out.println(blueTank.shootPowUp);
 				}
 				if(powerUp.get(i).randPowUp == 3) {
-					blueTank.shootPowUp = "threeBullets";
+					blueTank.shootPowUp = "beam";
+					System.out.println(blueTank.shootPowUp);
 				}
 			}
 			if(redTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3)) {
 				powerUp.get(i).isActive = false;
 				if(powerUp.get(i).randPowUp == 1) {
-					redTank.shootPowUp = "beam";
+					redTank.shootPowUp = "big";
+					System.out.println(redTank.shootPowUp);
 				}
 				if(powerUp.get(i).randPowUp == 3) {
-					redTank.shootPowUp = "threeBullets";
+					redTank.shootPowUp = "mean";
+					System.out.println(redTank.shootPowUp);
 				}
 				//now make the tank call new shoot power up parameter to overloaded constructor of projectile when adding a projectile and then make projectile different based on powerup passed
 			}
