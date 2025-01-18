@@ -36,6 +36,8 @@ public class Tank extends GameObject{
 	String tankColor;
 	int counter = 0;
 	
+	int beamLoop = 0;
+	
 	String shootPowUp = "";
 
 	public Tank(int x, int y, int width, int height, String tankColor) {
@@ -240,13 +242,19 @@ public class Tank extends GameObject{
 		
 		else {
 			if(shootPowUp == "big") {
+				shootPowUp = "";
         		return new Projectile((int)x+width/2-50, (int)y+height/2-60, 100, 100, calcDx(), calcDy(), tankColor, shootPowUp);
 			}
+			
 			if(shootPowUp == "beam") {
-				for(int i = 0; i < 6; i++) {
-					shootPowUp = "";
-					return new Projectile((int)x+width/2 - i, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
-				}
+//				for(int i = 0; i < 6; i++) {
+//					shootPowUp = "";
+//					return new Projectile((int)x+width/2 - i, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
+//				}
+				
+				beamLoop++;
+				return new Projectile((int)x+width/2 - 20, (int)y+height/2-(beamLoop*2), 10, 10, calcDx(), calcDy(), tankColor);
+				
 			}
 			shootPowUp = "";
 			return new Projectile((int)x+width/2-6, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);

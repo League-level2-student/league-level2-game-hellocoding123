@@ -138,6 +138,7 @@ public class ObjectManager implements ActionListener {
 					System.out.println(blueTank.shootPowUp);
 				}
 				if(powerUp.get(i).randPowUp == 3) {
+					blueTank.beamLoop = 0;
 					blueTank.shootPowUp = "beam";
 					System.out.println(blueTank.shootPowUp);
 				}
@@ -149,7 +150,8 @@ public class ObjectManager implements ActionListener {
 					System.out.println(redTank.shootPowUp);
 				}
 				if(powerUp.get(i).randPowUp == 3) {
-					redTank.shootPowUp = "mean";
+					redTank.beamLoop = 0;
+					redTank.shootPowUp = "beam";
 					System.out.println(redTank.shootPowUp);
 				}
 				//now make the tank call new shoot power up parameter to overloaded constructor of projectile when adding a projectile and then make projectile different based on powerup passed

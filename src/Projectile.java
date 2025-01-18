@@ -15,6 +15,9 @@ public class Projectile extends GameObject{
 	double tdx;
 	double tdy;
 	
+	Tank blueTank;
+	Tank redTank;
+	
 	String tankColor;
 	
 	//PowerUp powUp = new PowerUp();
@@ -55,6 +58,20 @@ public class Projectile extends GameObject{
 		switch (powUp) {
 		
 			case "beam": 
+				if(tankColor == "blue") {
+					while(blueTank.beamLoop < 12) {
+						blueTank.getProjectile();
+					}
+					blueTank.shootPowUp = "";
+				}
+				
+				if(tankColor == "red") {
+					while(redTank.beamLoop < 12) {
+						redTank.getProjectile();
+					}
+					redTank.shootPowUp = "";
+				}
+				
 				break;
 				
 			case "big":
