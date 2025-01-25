@@ -18,6 +18,8 @@ public class Projectile extends GameObject{
 	Tank blueTank;
 	Tank redTank;
 	
+	ObjectManager objectmanager = new ObjectManager(blueTank, redTank);
+	
 	String tankColor;
 	
 	//PowerUp powUp = new PowerUp();
@@ -60,14 +62,16 @@ public class Projectile extends GameObject{
 			case "beam": 
 				if(tankColor == "blue") {
 					while(blueTank.beamLoop < 12) {
-						blueTank.getProjectile();
+						blueTank.canShoot=true;					
+						objectmanager.addProjectile(blueTank.getProjectile());
 					}
 					blueTank.shootPowUp = "";
 				}
 				
 				if(tankColor == "red") {
 					while(redTank.beamLoop < 12) {
-						redTank.getProjectile();
+						redTank.canShoot=true;
+						objectmanager.addProjectile(redTank.getProjectile());
 					}
 					redTank.shootPowUp = "";
 				}

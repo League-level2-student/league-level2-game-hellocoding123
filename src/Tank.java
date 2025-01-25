@@ -234,15 +234,15 @@ public class Tank extends GameObject{
 	
 	public Projectile getProjectile() {
 		
-		canShoot = false;
-		
 		if(shootPowUp == "") {
+			canShoot = false;
         	return new Projectile((int)x+width/2-6, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
 		}
 		
 		else {
 			if(shootPowUp == "big") {
 				shootPowUp = "";
+				canShoot = false;
         		return new Projectile((int)x+width/2-50, (int)y+height/2-60, 100, 100, calcDx(), calcDy(), tankColor, shootPowUp);
 			}
 			
@@ -253,10 +253,12 @@ public class Tank extends GameObject{
 //				}
 				
 				beamLoop++;
+				canShoot = false;
 				return new Projectile((int)x+width/2 - 20, (int)y+height/2-(beamLoop*2), 10, 10, calcDx(), calcDy(), tankColor);
 				
 			}
 			shootPowUp = "";
+			canShoot = false;
 			return new Projectile((int)x+width/2-6, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
 		}
 		
