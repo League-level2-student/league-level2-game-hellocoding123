@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.lang.Math;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -30,6 +31,8 @@ public class Tank extends GameObject{
 	
 	int angle = 0;
 	
+	int shieldLoop = 0;
+	
 	int blinks = 0;
 	public boolean isBlinking = false;
 	
@@ -39,6 +42,9 @@ public class Tank extends GameObject{
 	int beamLoop = 0;
 	
 	String shootPowUp = "";
+	
+	Random r = new Random();
+	int rand = 0;
 
 	public Tank(int x, int y, int width, int height, String tankColor) {
 		
@@ -69,7 +75,7 @@ public class Tank extends GameObject{
         
         g2.rotate(radAngle, x+width/2, y+height/2);
         
-        if(isHit && blinks < 6) {
+        if(isHit && blinks < 6 || shootPowUp == "shield") {
         	
         	isBlinking = true;
         	
@@ -84,6 +90,10 @@ public class Tank extends GameObject{
         	}
         	if(counter == 0) {
         		blinks++;
+        		shieldLoop++;
+        		if(shieldLoop >= 16) {
+        			shootPowUp = "";
+        		}
         	}
         	
         }
@@ -252,12 +262,18 @@ public class Tank extends GameObject{
 //					return new Projectile((int)x+width/2 - i, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
 //				}
 				
+				if(beamLoop >= 20) {
+					canShoot = false;
+					shootPowUp = "";
+				}
+				rand = r.nextInt(30) - 9;
 				beamLoop++;
-				canShoot = false;
-				return new Projectile((int)x+width/2 - 20, (int)y+height/2-(beamLoop*2), 10, 10, calcDx(), calcDy(), tankColor);
+				return new Projectile((int)x+width/2 - rand, (int)y+height/2 - rand, 5, 5, calcDx(), calcDy(), tankColor);
 				
 			}
-			shootPowUp = "";
+			if(!(shootPowUp == "shield")) {
+				shootPowUp = "";
+			}
 			canShoot = false;
 			return new Projectile((int)x+width/2-6, (int)y+height/2-6, 10, 10, calcDx(), calcDy(), tankColor);
 		}

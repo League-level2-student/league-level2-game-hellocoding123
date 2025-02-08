@@ -131,7 +131,7 @@ public class ObjectManager implements ActionListener {
 		}
 
 		for(int i = 0; i < powerUp.size(); i++ ) {
-			if(blueTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3)) {
+			if(blueTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3 || powerUp.get(i).randPowUp == 2)) {
 				powerUp.get(i).isActive = false;
 				if(powerUp.get(i).randPowUp == 1) {
 					blueTank.shootPowUp = "big";
@@ -142,8 +142,13 @@ public class ObjectManager implements ActionListener {
 					blueTank.shootPowUp = "beam";
 					System.out.println(blueTank.shootPowUp);
 				}
+				if(powerUp.get(i).randPowUp == 2) {
+					blueTank.shootPowUp = "shield";
+					blueTank.shieldLoop = 0;
+					System.out.println(blueTank.shootPowUp);
+				}
 			}
-			if(redTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3)) {
+			if(redTank.collisionBox.intersects(powerUp.get(i).collisionBox) && (powerUp.get(i).randPowUp == 1 || powerUp.get(i).randPowUp == 3|| powerUp.get(i).randPowUp == 2)) {
 				powerUp.get(i).isActive = false;
 				if(powerUp.get(i).randPowUp == 1) {
 					redTank.shootPowUp = "big";
@@ -152,6 +157,11 @@ public class ObjectManager implements ActionListener {
 				if(powerUp.get(i).randPowUp == 3) {
 					redTank.beamLoop = 0;
 					redTank.shootPowUp = "beam";
+					System.out.println(redTank.shootPowUp);
+				}
+				if(powerUp.get(i).randPowUp == 2) {
+					redTank.shootPowUp = "shield";
+					redTank.shieldLoop = 0;
 					System.out.println(redTank.shootPowUp);
 				}
 				//now make the tank call new shoot power up parameter to overloaded constructor of projectile when adding a projectile and then make projectile different based on powerup passed

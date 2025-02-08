@@ -271,6 +271,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			
 			//shoot
 			if (e.getKeyCode()==KeyEvent.VK_SLASH && blueTank.canShoot) {
+				/*
+				if(blueTank.shootPowUp == "beam") {
+					for(int i = 0; i < 1000; i++) {
+						objectManager.addProjectile(blueTank.getProjectile());
+					}
+				}
+				*/
 				objectManager.addProjectile(blueTank.getProjectile());
 			}
 			
