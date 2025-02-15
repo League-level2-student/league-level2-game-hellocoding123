@@ -307,11 +307,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 			blueTank.rotatingRight = false;
 		}
-		
-		if (e.getKeyCode()==KeyEvent.VK_SLASH) {
-			blueTank.canShoot = true;
+		if(!(blueTank.shootPowUp == "beam")) {
+			if (e.getKeyCode()==KeyEvent.VK_SLASH) {
+				blueTank.canShoot = true;
+			}
 		}
-		
 		//red tank key release check
 		if (e.getKeyCode()==KeyEvent.VK_W) {
 			redTank.up = false;
